@@ -5,6 +5,7 @@ import styled from "styled-components";
 import { Header } from "../components/Header";
 import { Trash } from "../components/Icons/Trash";
 import api from "../service/api";
+import { useNavigate } from "react-router-dom";
 
 const Title = styled.h1`
   font-size: 32pt;
@@ -75,6 +76,7 @@ const CustomCard = styled(Card)`
   padding: 2rem;
   align-items: center;
   justify-content: center;
+  max-width: 324px;
 
   cursor: pointer;
 
@@ -105,6 +107,8 @@ const DeleteButton = styled.button`
 export function Home() {
   const [todoLists, setTodoLists] = useState([]);
 
+  const navigate = useNavigate();
+
   const getAll = async () => {
     try {
       const response = await api.get("/lists/");
@@ -126,7 +130,7 @@ export function Home() {
     if (!result) return;
 
     try {
-       await api.delete("/list/" + id);
+      await api.delete("/list/" + id);
       await getAll();
     } catch (error) {
       console.log(error);
@@ -135,8 +139,9 @@ export function Home() {
 
   const handleCreate = async (e) => {
     try {
-      await api.post("/lists/", { name: "Nova lista" });
-      await getAll();
+      const response = await api.post("/lists/", { name: "Nova lista" });
+      const listId = response.data.id;
+      navigate("/todo/" + listId);
     } catch (error) {
       console.log(error);
     }

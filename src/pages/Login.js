@@ -6,8 +6,7 @@ import Button from "../components/Button";
 import { Container } from "../components/styles";
 import api from "../service/api";
 
-import {  useNavigate } from "react-router-dom";
-
+import { useNavigate } from "react-router-dom";
 
 // HTML x JSX
 // class = className
@@ -19,8 +18,7 @@ export function Login() {
   const [password, setPassword] = useState("");
   const [isCreate, setIsCreate] = useState(true);
 
-  const navigate = useNavigate()
-
+  const navigate = useNavigate();
 
   const handleLogin = async () => {
     try {
@@ -31,8 +29,7 @@ export function Login() {
       const token = response.data?.data?.token;
       if (token) {
         localStorage.setItem("token", token);
-        navigate("/home")
-
+        navigate("/home");
       }
     } catch (error) {
       console.log(error?.data?.message);
