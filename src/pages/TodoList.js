@@ -108,6 +108,7 @@ export function TodoList() {
   };
 
   const handleDelete = async (itemId) => {
+    console.log("call API", { itemId });
     try {
       await api.delete("/list/" + id + "/item/" + itemId);
       await getOne();

@@ -1,6 +1,8 @@
 import { useState } from "react";
 import styled from "styled-components";
 import api from "../../service/api";
+import { Confirmed, Trash, Pen, Canceled } from "../Icons/Trash";
+
 
 const StyledListItem = styled.div`
   display: flex;
@@ -34,6 +36,12 @@ const Input = styled.input`
 const ListItemActions = styled.div`
   display: flex;
   gap: 0.5rem;
+
+  button{
+    background-color: transparent;
+    border-color: transparent;
+    cursor: pointer;
+  }
 `;
 
 export const ListItem = (props) => {
@@ -55,6 +63,7 @@ export const ListItem = (props) => {
 
   const handlePrepareEdit = (e) => {
     e.preventDefault();
+    window.console.log(listItem)
     setIsEditing(true);
   };
 
@@ -83,18 +92,20 @@ export const ListItem = (props) => {
         {isEditing ? (
           <>
             <button type="submit" form={formId}>
-              Salvar
+              <Confirmed />
             </button>
             <button onClick={handleCancelEdit} type="button">
-              Cancelar
+              <Canceled />
             </button>
           </>
         ) : (
           <>
             <button onClick={handlePrepareEdit} type="button">
-              Editar
+              <Pen />
             </button>
-            <button onClick={() => onDelete(listItem.id)}>Excluir</button>
+            <button onClick={() => onDelete(listItem.id)}>
+              <Trash />
+            </button>
           </>
         )}
       </ListItemActions>

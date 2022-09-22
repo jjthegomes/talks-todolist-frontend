@@ -51,7 +51,6 @@ export const TodoList = () => {
   return (
     <Container>
       <AddTodoForm onSubmit={onSubmit} />
-
       <List>
         {list.map((listItem) => (
           <ListItem
@@ -60,7 +59,7 @@ export const TodoList = () => {
             onDelete={handleDelete}
             onEdit={handleEdit}
           />
-        ))}
+        )).reverse()}
       </List>
     </Container>
   );

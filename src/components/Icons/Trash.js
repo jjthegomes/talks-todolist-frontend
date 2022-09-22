@@ -1,3 +1,7 @@
+import pen from './img/pen.png'
+import confirm from './img/confirmed.png'
+import cancel from './img/cancel.png'
+
 export const Trash = ({ size = 24 }) => {
   return (
     <svg
@@ -14,3 +18,21 @@ export const Trash = ({ size = 24 }) => {
     </svg>
   );
 };
+export const Pen = ({ size = 24 }) => {
+
+  return <img src={pen}
+    width={size}
+    height={size}></img>
+}
+
+export const Confirmed = ({ size = 24 }) => {
+  return <img src={confirm}
+    width={size}
+    height={size}></img>
+}
+
+export const Canceled = ({ size = 24 }) => {
+  return <img src={cancel}
+    width={size}
+    height={size}></img>
+}
