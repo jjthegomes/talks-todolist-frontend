@@ -59,7 +59,7 @@ export const TodoList = () => {
             onDelete={handleDelete}
             onEdit={handleEdit}
           />
-        )).reverse()}
+        ))}
       </List>
     </Container>
   );
